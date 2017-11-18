@@ -50,6 +50,7 @@ namespace ArcEngine
             z /= m;
         }
 
+        public static Vector3 ClampDistance(Vector3 a, float distance) => a.magnitude > distance ? a.normalized * distance : a;
         public static Vector3 Cross(Vector3 a, Vector3 b) => new Vector3(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
         public static float Distance(Vector3 a, Vector3 b) => (b - a).magnitude;
         public static float Dot(Vector3 a, Vector3 b)
@@ -58,6 +59,7 @@ namespace ArcEngine
             b.Normalize();
             return a.x * b.x + a.y * b.y + a.z * b.z;
         }
+        public static Vector3 Lerp(Vector3 a, Vector3 b, float t) => new Vector3(Mathf.Lerp(a.x, b.x, t), Mathf.Lerp(a.y, b.y, t), Mathf.Lerp(a.z, b.z, t));
         public static Vector3 Reflect(Vector3 i, Vector3 n) => i - 2 * n * Dot(i, n);
 
         public static Vector3 operator +(Vector3 a, Vector3 b) => new Vector3(a.x + b.x, a.y + b.y, a.z + b.z);

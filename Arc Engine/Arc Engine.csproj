@@ -43,6 +43,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Math\Mathf.cs" />
     <Compile Include="Math\Vector4.cs" />
     <Compile Include="Math\Vector3.cs" />
     <Compile Include="Math\Vector2.cs" />

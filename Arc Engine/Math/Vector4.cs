@@ -52,7 +52,6 @@ namespace ArcEngine
             this.w = w;
         }
 
-        public float Distance(Vector4 a, Vector4 b) => (b - a).magnitude;
         public void Normalize()
         {
             float m = magnitude;
@@ -61,6 +60,10 @@ namespace ArcEngine
             z /= m;
             w /= m;
         }
+
+        public static Vector4 ClampDistance(Vector4 a, float distance) => a.magnitude > distance ? a.normalized * distance : a;
+        public static float Distance(Vector4 a, Vector4 b) => (b - a).magnitude;
+        public static Vector4 Lerp(Vector4 a, Vector4 b, float t) => new Vector4(Mathf.Lerp(a.x, b.x, t), Mathf.Lerp(a.y, b.y, t), Mathf.Lerp(a.z, b.z, t), Mathf.Lerp(a.w, b.w, t));
 
         public static Vector4 operator +(Vector4 a, Vector4 b) => new Vector4(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
         public static Vector4 operator -(Vector4 a, Vector4 b) => new Vector4(a.x - b.x, a.y - b.y, a.z - b.z, a.w - b.w);

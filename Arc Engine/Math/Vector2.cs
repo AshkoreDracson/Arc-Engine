@@ -39,6 +39,7 @@ namespace ArcEngine
             y /= m;
         }
 
+        public static Vector2 ClampDistance(Vector2 a, float distance) => a.magnitude > distance ? a.normalized * distance : a;
         public static float Distance(Vector2 a, Vector2 b) => (b - a).magnitude;
         public static float Dot(Vector2 a, Vector2 b)
         {
@@ -46,6 +47,7 @@ namespace ArcEngine
             b.Normalize();
             return a.x * b.x + a.y * b.y;
         }
+        public static Vector2 Lerp(Vector2 a, Vector2 b, float t) => new Vector2(Mathf.Lerp(a.x, b.x, t), Mathf.Lerp(a.y, b.y, t));
         public static Vector2 Reflect(Vector2 i, Vector2 n) => i - 2 * n * Dot(i, n);
 
         public static Vector2 operator +(Vector2 a, Vector2 b) => new Vector2(a.x + b.x, a.y + b.y);
