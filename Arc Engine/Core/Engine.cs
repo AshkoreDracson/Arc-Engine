@@ -8,13 +8,16 @@ namespace ArcEngine
         public static int TargetFramerate { get; set; } = 60;
 
         private static bool RequestQuit { get; set; }
+
+        private static InputSystem InputSystem { get; set; }
         private static RenderSystem RenderSystem { get; set; }
         private static BaseSystem[] Systems { get; set; }
 
         public static void Run()
         {
+            InputSystem = new InputSystem();
             RenderSystem = new RenderSystem();
-            Systems = new BaseSystem[] { RenderSystem };
+            Systems = new BaseSystem[] { InputSystem, RenderSystem };
 
             Work();
         }
