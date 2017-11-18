@@ -17,7 +17,7 @@ namespace ArcEngine
         public float y { get; set; }
         public float z { get; set; }
 
-        public float magnitude => (float)Math.Sqrt(x * x + y * y + z * z);
+        public float magnitude => (x * x + y * y + z * z).Sqrt();
         public float sqrMagnitude => x * x + y * y + z * z;
 
         public Vector3 normalized
