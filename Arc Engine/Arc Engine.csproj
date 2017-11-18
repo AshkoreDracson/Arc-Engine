@@ -44,11 +44,12 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseSystem.cs" />
+    <Compile Include="Systems\BaseSystem.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\GameWindow.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Systems\RenderSystem.cs" />
     <Compile Include="Math\Mathf.cs" />
     <Compile Include="Math\Vector4.cs" />
     <Compile Include="Math\Vector3.cs" />

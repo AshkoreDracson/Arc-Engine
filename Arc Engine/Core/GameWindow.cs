@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace ArcEngine.Core
+namespace ArcEngine
 {
     public class GameWindow : Form
     {
