@@ -1,4 +1,4 @@
-﻿using ArcEngine.Core;
+﻿using ArcEngine;
 
 namespace ArcEngineTest
 {
