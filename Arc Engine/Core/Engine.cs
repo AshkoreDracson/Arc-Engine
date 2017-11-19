@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ArcEngine
@@ -36,13 +37,23 @@ namespace ArcEngine
 
             while (!RequestQuit && RenderSystem.Window.Visible)
             {
+                DateTime start = DateTime.Now;
+
                 foreach (BaseSystem system in Systems)
                 {
                     system.Update();
                 }
-
                 Application.DoEvents();
-                Thread.Sleep(1000 / TargetFramerate);
+
+                DateTime endWork = DateTime.Now;
+                TimeSpan elapsedTime = endWork - start;
+                int waitTime = (1000 / TargetFramerate - (int)elapsedTime.TotalMilliseconds).ClampMin(0);
+
+                if (waitTime > 0)
+                    Thread.Sleep(waitTime);
+
+                DateTime end = DateTime.Now;
+                Time.SetDeltaTime((float)(end - start).TotalSeconds);
             }
         }
     }
