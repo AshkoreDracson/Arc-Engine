@@ -6,13 +6,13 @@
 
         public override void Start()
         {
-            Window = new GameWindow("ArcEngine");
+            Window = new GameWindow("Arc Engine");
             Window.Show();
         }
 
         public override void Update()
         {
-
+            Window.Controls[0].Refresh();
         }
     }
 }

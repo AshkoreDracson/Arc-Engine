@@ -108,6 +108,6 @@ namespace ArcEngine
                 return hashCode;
             }
         }
-        public override string ToString() => $"{x}, {y}, {z}, {w}";
+        public override string ToString() => $"X:{x}, Y:{y}, Z:{z}, W:{w}";
     }
 }

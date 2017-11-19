@@ -89,6 +89,6 @@ namespace ArcEngine
                 return (x.GetHashCode() * 397) ^ y.GetHashCode();
             }
         }
-        public override string ToString() => $"{x}, {y}";
+        public override string ToString() => $"X:{x}, Y:{y}";
     }
 }

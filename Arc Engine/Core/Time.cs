@@ -8,6 +8,8 @@
         public static float unscaledDeltaTime { get; private set; }
         public static float unscaledTime { get; private set; }
 
+        public static float FPS => 1 / unscaledDeltaTime;
+
         internal static void SetDeltaTime(float dt)
         {
             deltaTime = dt * timeScale;
