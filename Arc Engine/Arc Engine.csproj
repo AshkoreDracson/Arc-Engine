@@ -48,6 +48,7 @@
     <Compile Include="Input\Input.cs" />
     <Compile Include="Input\Keys.cs" />
     <Compile Include="Input\KeyState.cs" />
+    <Compile Include="Input\MouseButtons.cs" />
     <Compile Include="Systems\BaseSystem.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\GameWindow.cs">

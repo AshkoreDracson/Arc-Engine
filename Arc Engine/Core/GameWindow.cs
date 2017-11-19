@@ -12,6 +12,11 @@ namespace ArcEngine
             Height = 720;
             Text = title;
 
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MinimizeBox = false;
+            MaximizeBox = false;
+            StartPosition = FormStartPosition.CenterScreen;
+
             Viewport = new ViewportControl { Dock = DockStyle.Fill };
             Controls.Add(Viewport);
         }
