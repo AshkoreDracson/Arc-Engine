@@ -4,8 +4,8 @@
     {
         public bool Enabled { get; set; } = true;
 
-        public abstract void Start();
-        public abstract void Update();
-        public abstract void Draw();
+        internal virtual void Start() { }
+        internal virtual void Update() { }
+        internal virtual void Draw() { }
     }
 }

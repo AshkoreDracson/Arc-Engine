@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\Component.cs" />
+    <Compile Include="Components\Transform.cs" />
     <Compile Include="Core\GameObject.cs" />
     <Compile Include="Core\Time.cs" />
     <Compile Include="Math\Color32.cs" />
