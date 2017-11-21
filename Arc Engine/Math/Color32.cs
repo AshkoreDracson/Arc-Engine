@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace ArcEngine
 {
+    [StructLayout(LayoutKind.Sequential)]
     public struct Color32 : IEquatable<Color32>
     {
         public static Color32 Black => new Color32(0, 0, 0);

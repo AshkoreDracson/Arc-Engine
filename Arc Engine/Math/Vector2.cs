@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Runtime.InteropServices;
+
 namespace ArcEngine
 {
+    [StructLayout(LayoutKind.Sequential)]
     public struct Vector2 : IEquatable<Vector2>
     {
         public static Vector2 zero => new Vector2(0, 0);
