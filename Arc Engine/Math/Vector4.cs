@@ -30,6 +30,44 @@ namespace ArcEngine
             }
         }
 
+        public float this[int i]
+        {
+            get
+            {
+                switch (i)
+                {
+                    case 0:
+                        return x;
+                    case 1:
+                        return y;
+                    case 2:
+                        return z;
+                    case 3:
+                        return w;
+                    default:
+                        return float.NaN;
+                }
+            }
+            set
+            {
+                switch (i)
+                {
+                    case 0:
+                        x = value;
+                        break;
+                    case 1:
+                        y = value;
+                        break;
+                    case 2:
+                        z = value;
+                        break;
+                    case 3:
+                        w = value;
+                        break;
+                }
+            }
+        }
+
         public Vector4(float x, float y)
         {
             this.x = x;

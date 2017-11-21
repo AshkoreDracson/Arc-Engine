@@ -32,6 +32,8 @@ namespace ArcEngine
         }
         public T GetComponent<T>() where T : Component => _components.FirstOrDefault(comp => comp is T) as T;
         public T[] GetComponents<T>() where T : Component => (T[])_components.Where(comp => comp is T).ToArray();
+        public List<Component> GetComponents() => _components;
+        public IEnumerator<Component> GetComponentsEnumerator() => _components.GetEnumerator();
         public void RemoveComponent<T>() where T : Component => _components.RemoveAll(comp => comp is T);
     }
 }

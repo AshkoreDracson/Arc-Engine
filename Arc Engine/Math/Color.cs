@@ -62,6 +62,44 @@ namespace ArcEngine
 
         public bool IsHDR => r > 1 || g > 1 || b > 1;
 
+        public float this[int i]
+        {
+            get
+            {
+                switch (i)
+                {
+                    case 0:
+                        return r;
+                    case 1:
+                        return g;
+                    case 2:
+                        return b;
+                    case 3:
+                        return a;
+                    default:
+                        return float.NaN;
+                }
+            }
+            set
+            {
+                switch (i)
+                {
+                    case 0:
+                        r = value;
+                        break;
+                    case 1:
+                        g = value;
+                        break;
+                    case 2:
+                        b = value;
+                        break;
+                    case 3:
+                        a = value;
+                        break;
+                }
+            }
+        }
+
         public Color(float r, float g, float b)
         {
             _r = _g = _b = _a = 0;

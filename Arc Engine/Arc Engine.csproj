@@ -50,6 +50,7 @@
     <Compile Include="Core\Time.cs" />
     <Compile Include="Math\Color32.cs" />
     <Compile Include="Math\Color.cs" />
+    <Compile Include="Math\Quaternion.cs" />
     <Compile Include="Settings\GraphicsSettings.cs" />
     <Compile Include="Input\Input.cs" />
     <Compile Include="Input\Keys.cs" />
