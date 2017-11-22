@@ -39,20 +39,13 @@ namespace ArcEngine
 
         private static void Work()
         {
-            foreach (BaseSystem system in Systems)
-            {
-                system.Start();
-            }
+            Start();
 
             while (Running)
             {
                 DateTime start = DateTime.Now;
 
-                foreach (BaseSystem system in Systems)
-                {
-                    system.Update();
-                }
-                Application.DoEvents();
+                Update();
 
                 if (TargetFramerate > 0)
                 {
@@ -67,6 +60,34 @@ namespace ArcEngine
                 DateTime end = DateTime.Now;
                 Time.SetDeltaTime((float)(end - start).TotalSeconds);
             }
+        }
+
+        private static void Start()
+        {
+            foreach (BaseSystem system in Systems)
+            {
+                system.Start();
+            }
+        }
+
+        private static void Update()
+        {
+            InputSystem.Update();
+            foreach (GameObject go in GameObject.All)
+            {
+                foreach (Component comp in go.GetComponentsEnumerator())
+                {
+                    if (!comp.HasStarted) comp.Start();
+                    comp.Update();
+                }
+            }
+
+            Application.DoEvents();
+        }
+
+        private static void Draw()
+        {
+            RenderSystem.Update();
         }
     }
 }
