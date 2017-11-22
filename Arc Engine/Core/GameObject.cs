@@ -8,7 +8,7 @@ namespace ArcEngine
         public static IEnumerable<GameObject> All => _gameObjects;
         public static IEnumerable<GameObject> Root => _gameObjects.Where(go => go.transform.parent == null);
 
-        private static List<GameObject> _gameObjects = new List<GameObject>();
+        private static readonly List<GameObject> _gameObjects = new List<GameObject>();
         private static ulong curID;
 
         public ulong ID { get; }
@@ -17,7 +17,7 @@ namespace ArcEngine
 
         public Transform transform { get; }
 
-        private List<Component> _components = new List<Component>();
+        private readonly List<Component> _components = new List<Component>();
 
         public GameObject() : this("GameObject") { }
         public GameObject(string name)
@@ -44,7 +44,7 @@ namespace ArcEngine
         public T GetComponent<T>() where T : Component => _components.FirstOrDefault(comp => comp is T) as T;
         public T[] GetComponents<T>() where T : Component => (T[])_components.Where(comp => comp is T).ToArray();
         public List<Component> GetComponents() => _components;
-        public IEnumerable<Component> GetComponentsEnumerator() => _components;
+        public IEnumerable<Component> GetComponentsEnumerable() => _components;
         public void RemoveComponent<T>() where T : Component => _components.RemoveAll(comp => comp is T);
     }
 }

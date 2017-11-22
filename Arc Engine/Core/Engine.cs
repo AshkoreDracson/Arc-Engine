@@ -75,7 +75,7 @@ namespace ArcEngine
             InputSystem.Update();
             foreach (GameObject go in GameObject.All)
             {
-                foreach (Component comp in go.GetComponentsEnumerator())
+                foreach (Component comp in go.GetComponentsEnumerable())
                 {
                     if (!comp.HasStarted) comp.Start();
                     comp.Update();

@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ArcEngine
@@ -15,8 +16,17 @@ namespace ArcEngine
         {
             Graphics g = e.Graphics;
             g.Clear(System.Drawing.Color.Black);
-
             g.SmoothingMode = GraphicsSettings.AntiAliasing ? SmoothingMode.AntiAlias : SmoothingMode.None;
+
+            GraphicContext gc = new GraphicContext(e.Graphics, Camera.instance);
+
+            foreach (GameObject go in GameObject.All)
+            {
+                foreach (Component comp in go.GetComponentsEnumerable().Where(comp => comp is Renderer))
+                {
+                    comp.Draw(gc);
+                }
+            }
         }
     }
 }

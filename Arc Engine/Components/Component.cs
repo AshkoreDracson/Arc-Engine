@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace ArcEngine
+﻿namespace ArcEngine
 {
     public abstract class Component
     {
@@ -11,6 +9,6 @@ namespace ArcEngine
 
         internal virtual void Start() { }
         internal virtual void Update() { }
-        internal virtual void Draw(Graphics g) { }
+        internal virtual void Draw(GraphicContext gc) { }
     }
 }
