@@ -12,7 +12,14 @@
 
         public override void Update()
         {
-            Window.Controls[0].Refresh();
+            if (Window.Visible)
+                Window.Controls[0]?.Refresh();
+        }
+
+        public void SetResolution(int width, int height)
+        {
+            Window.Width = width;
+            Window.Height = height;
         }
     }
 }

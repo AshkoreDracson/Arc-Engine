@@ -22,7 +22,7 @@ namespace ArcEngine
 
             foreach (GameObject go in GameObject.All)
             {
-                foreach (Component comp in go.GetComponentsEnumerable().Where(comp => comp is Renderer))
+                foreach (Component comp in go.GetComponentsEnumerable().Where(comp => comp is Renderer || comp is Script))
                 {
                     comp.Draw(gc);
                 }

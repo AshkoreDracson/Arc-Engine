@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -20,6 +21,8 @@ namespace ArcEngine
         private static RenderSystem RenderSystem { get; set; }
         private static BaseSystem[] Systems { get; set; }
 
+        private static GlobalScript[] GlobalScripts { get; set; }
+
         public static void Run()
         {
             if (Running)
@@ -28,6 +31,8 @@ namespace ArcEngine
             InputSystem = new InputSystem();
             RenderSystem = new RenderSystem();
             Systems = new BaseSystem[] { InputSystem, RenderSystem };
+
+            GlobalScripts = GlobalScript.GetEnumerableOfType<GlobalScript>().OrderBy(script => script.Order).ToArray();
 
             Work();
         }
@@ -46,6 +51,7 @@ namespace ArcEngine
                 DateTime start = DateTime.Now;
 
                 Update();
+                Draw();
 
                 if (TargetFramerate > 0)
                 {
@@ -68,11 +74,16 @@ namespace ArcEngine
             {
                 system.Start();
             }
+            foreach (GlobalScript script in GlobalScripts)
+            {
+                script.Start();
+            }
         }
 
         private static void Update()
         {
             InputSystem.Update();
+
             foreach (GameObject go in GameObject.All)
             {
                 foreach (Component comp in go.GetComponentsEnumerable())
@@ -80,6 +91,10 @@ namespace ArcEngine
                     if (!comp.HasStarted) comp.Start();
                     comp.Update();
                 }
+            }
+            foreach (GlobalScript script in GlobalScripts)
+            {
+                script.Update();
             }
 
             Application.DoEvents();

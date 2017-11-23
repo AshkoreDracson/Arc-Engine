@@ -60,6 +60,8 @@
     <Compile Include="Input\Keys.cs" />
     <Compile Include="Input\KeyState.cs" />
     <Compile Include="Input\MouseButtons.cs" />
+    <Compile Include="Scripting\GlobalScript.cs" />
+    <Compile Include="Scripting\Script.cs" />
     <Compile Include="Systems\BaseSystem.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Window\GameWindow.cs">
