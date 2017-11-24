@@ -21,11 +21,11 @@ namespace ArcEngineTest
         {
             for (int i = 0; i < tr.Length; i++)
             {
-                float offset = (i * 0.05f);
+                float offset = i * 0.05f;
                 float x = Mathf.Sin(Time.time * 0.5f + offset).Remap(-1, 1, 10, 1240);
                 float y = Mathf.Sin(Time.time * 1f + offset).Remap(-1, 1, 10, 680);
                 tr[i].Position = new Vector2(x, y);
-                tr[i].Color = Color.Lerp(Color.Green, Color.Magenta, Mathf.Sin(Time.time * 10f + offset * 2).Remap(-1, 1, 0, 1));
+                tr[i].Color = Color.Lerp(Color.Green, Color.Magenta, (Time.time * 10f + offset * 2).Sin().Remap(-1, 1, 0, 1));
             }
         }
     }
