@@ -4,7 +4,7 @@ namespace ArcEngineTest
 {
     public class TestScript : GlobalScript
     {
-        private TextRenderer[] tr = new TextRenderer[50];
+        private TextRenderer[] tr = new TextRenderer[125];
 
         public override void Start()
         {
@@ -12,7 +12,7 @@ namespace ArcEngineTest
             {
                 GameObject go = new GameObject();
                 tr[i] = go.AddComponent<TextRenderer>();
-                tr[i].Text = i.ToString();
+                tr[i].Text = "O";
                 tr[i].Position = new Vector2(10 + i * 10, 10 + i * 10);
             }
         }
@@ -21,7 +21,11 @@ namespace ArcEngineTest
         {
             for (int i = 0; i < tr.Length; i++)
             {
-                tr[i].Position = new Vector2(10 + i * 10, 10 + (Time.time * 6 + (i)).Cos().Remap(-1, 1, 50, 0) + i * 10);
+                float offset = (i * 0.05f);
+                float x = Mathf.Sin(Time.time * 0.5f + offset).Remap(-1, 1, 10, 1240);
+                float y = Mathf.Sin(Time.time * 1f + offset).Remap(-1, 1, 10, 680);
+                tr[i].Position = new Vector2(x, y);
+                tr[i].Color = Color.Lerp(Color.Green, Color.Magenta, Mathf.Sin(Time.time * 10f + offset * 2).Remap(-1, 1, 0, 1));
             }
         }
     }

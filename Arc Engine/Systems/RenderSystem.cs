@@ -1,4 +1,6 @@
-﻿namespace ArcEngine
+﻿using System.Drawing;
+
+namespace ArcEngine
 {
     public class RenderSystem : BaseSystem
     {
@@ -18,8 +20,7 @@
 
         public void SetResolution(int width, int height)
         {
-            Window.Width = width;
-            Window.Height = height;
+            Window.ClientSize = new Size(width, height);
         }
     }
 }
