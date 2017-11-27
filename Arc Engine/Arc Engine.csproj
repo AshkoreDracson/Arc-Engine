@@ -50,11 +50,13 @@
     <Compile Include="Components\Renderers\TextRenderer.cs" />
     <Compile Include="Components\Transform.cs" />
     <Compile Include="Core\GameObject.cs" />
+    <Compile Include="Core\Layer.cs" />
     <Compile Include="Core\Time.cs" />
     <Compile Include="Graphics\GraphicContext.cs" />
     <Compile Include="Graphics\GUI.cs" />
     <Compile Include="Math\Color32.cs" />
     <Compile Include="Math\Color.cs" />
+    <Compile Include="Math\Matrix4x4.cs" />
     <Compile Include="Math\Quaternion.cs" />
     <Compile Include="Graphics\GraphicsSettings.cs" />
     <Compile Include="Input\Input.cs" />

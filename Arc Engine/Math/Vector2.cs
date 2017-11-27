@@ -104,10 +104,12 @@ namespace ArcEngine
 
         public static explicit operator Vector2(Point p) => new Vector2(p.X, p.Y);
         public static explicit operator Vector2(PointF p) => new Vector2(p.X, p.Y);
+        public static explicit operator Vector2(Size s) => new Vector2(s.Width, s.Height);
         public static implicit operator Vector2(Vector3 a) => new Vector2(a.x, a.y);
         public static explicit operator Vector2(Vector4 a) => new Vector2(a.x, a.y);
 
         public static explicit operator PointF(Vector2 a) => new PointF(a.x, a.y);
+        public static explicit operator Size(Vector2 a) => new Size((int)a.x, (int)a.y);
 
         public override bool Equals(object obj)
         {

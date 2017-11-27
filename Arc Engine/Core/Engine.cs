@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
@@ -13,6 +14,12 @@ namespace ArcEngine
             set => RenderSystem.Window.Text = value;
         }
         public static int TargetFramerate { get; set; } = 60;
+
+        public static Vector2 Size
+        {
+            get => (Vector2)RenderSystem.Window.Size;
+            set => RenderSystem.Window.Size = (Size)value;
+        }
 
         private static bool RequestQuit { get; set; }
         private static bool Running => !RequestQuit && (RenderSystem.Window?.Visible ?? false);

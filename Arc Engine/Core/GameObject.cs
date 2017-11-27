@@ -14,6 +14,7 @@ namespace ArcEngine
         public ulong ID { get; }
         public string Name { get; set; }
         public bool Enabled { get; set; } = true;
+        public int Layer { get; set; } = ArcEngine.Layer.Get("Default");
 
         public Transform transform { get; }
 

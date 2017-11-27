@@ -16,7 +16,6 @@ namespace ArcEngine
             }
         }
         public Font Font { get; set; } = new Font(FontFamily.GenericMonospace, 9f);
-        public Vector2 Position { get; set; }
         public string Text { get; set; }
 
         private SolidBrush _brush;
@@ -28,7 +27,7 @@ namespace ArcEngine
 
         internal override void Draw(GraphicContext gc)
         {
-            gc.Graphics.DrawString(Text, Font, _brush, Position.x, Position.y);
+            gc.Graphics.DrawString(Text, Font, _brush, gameObject.transform.localPosition.x, gameObject.transform.localPosition.y);
         }
     }
 }
