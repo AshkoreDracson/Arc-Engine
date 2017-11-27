@@ -38,5 +38,13 @@ namespace ArcEngine
                 gc.Graphics.DrawString(text, font, brush, (PointF)position);
             });
         }
+
+        public static void Rectangle(Vector2 position, Vector2 size, Brush brush)
+        {
+            Engine.GUISystem.EnqueueCommand(gc =>
+            {
+                gc.Graphics.FillRectangle(brush, position.x, position.y, size.x, size.y);
+            });
+        }
     }
 }
