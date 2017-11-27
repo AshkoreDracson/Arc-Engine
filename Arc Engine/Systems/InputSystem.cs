@@ -11,13 +11,13 @@ namespace ArcEngine
 
         internal KeyState[] keyStates;
 
-        public override void Start()
+        internal override void Start()
         {
             keyStates = new KeyState[256];
             Input.System = this;
         }
 
-        public override void Update()
+        internal override void Update()
         {
             for (int i = 0; i < keyStates.Length; i++)
             {

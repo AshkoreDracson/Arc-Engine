@@ -6,13 +6,13 @@ namespace ArcEngine
     {
         public static GameWindow Window { get; private set; }
 
-        public override void Start()
+        internal override void Start()
         {
             Window = new GameWindow("Arc Engine");
             Window.Show();
         }
 
-        public override void Update()
+        internal override void Update()
         {
             if (Window.Visible)
                 Window.Controls[0]?.Refresh();

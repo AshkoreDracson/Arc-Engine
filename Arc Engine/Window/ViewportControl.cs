@@ -9,7 +9,7 @@ namespace ArcEngine
     {
         public ViewportControl()
         {
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer | ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer | ControlStyles.UserPaint, true);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -20,17 +20,20 @@ namespace ArcEngine
 
             GraphicContext gc = new GraphicContext(e.Graphics, Camera.instance);
 
-            foreach (GlobalScript script in Engine.GlobalScripts)
-            {
-                script.Draw(gc);
-            }
-            foreach (GameObject go in GameObject.All)
+            foreach (GameObject go in GameObject.All) // Renderers and Scripts
             {
                 foreach (Component comp in go.GetComponentsEnumerable().Where(comp => comp is Renderer || comp is Script))
                 {
                     comp.Draw(gc);
                 }
             }
+
+            foreach (GlobalScript script in Engine.GlobalScripts) // Global Rendering Draw
+            {
+                script.Draw(gc);
+            }
+
+            Engine.GUISystem.Draw(gc); // GUI
         }
     }
 }

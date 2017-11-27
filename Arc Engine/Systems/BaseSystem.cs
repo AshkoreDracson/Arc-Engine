@@ -2,7 +2,7 @@
 {
     public abstract class BaseSystem
     {
-        public abstract void Start();
-        public abstract void Update();
+        internal virtual void Start() { }
+        internal virtual void Update() { }
     }
 }

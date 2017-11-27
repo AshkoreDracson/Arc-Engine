@@ -52,6 +52,7 @@
     <Compile Include="Core\GameObject.cs" />
     <Compile Include="Core\Time.cs" />
     <Compile Include="Graphics\GraphicContext.cs" />
+    <Compile Include="Graphics\GUI.cs" />
     <Compile Include="Math\Color32.cs" />
     <Compile Include="Math\Color.cs" />
     <Compile Include="Math\Quaternion.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Scripting\Script.cs" />
     <Compile Include="Systems\BaseSystem.cs" />
     <Compile Include="Core\Engine.cs" />
+    <Compile Include="Systems\GUISystem.cs" />
     <Compile Include="Window\GameWindow.cs">
       <SubType>Form</SubType>
     </Compile>

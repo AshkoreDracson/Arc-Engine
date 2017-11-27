@@ -17,9 +17,10 @@ namespace ArcEngine
         private static bool RequestQuit { get; set; }
         private static bool Running => !RequestQuit && (RenderSystem.Window?.Visible ?? false);
 
-        private static InputSystem InputSystem { get; set; }
-        private static RenderSystem RenderSystem { get; set; }
-        private static BaseSystem[] Systems { get; set; }
+        internal static InputSystem InputSystem { get; set; }
+        internal static RenderSystem RenderSystem { get; set; }
+        internal static GUISystem GUISystem { get; set; }
+        internal static BaseSystem[] Systems { get; set; }
 
         internal static GlobalScript[] GlobalScripts { get; set; }
 
@@ -29,8 +30,9 @@ namespace ArcEngine
                 return;
 
             InputSystem = new InputSystem();
+            GUISystem = new GUISystem();
             RenderSystem = new RenderSystem();
-            Systems = new BaseSystem[] { InputSystem, RenderSystem };
+            Systems = new BaseSystem[] { InputSystem, GUISystem, RenderSystem };
 
             GlobalScripts = GlobalScript.GetEnumerableOfType<GlobalScript>().OrderBy(script => script.Order).ToArray();
 
