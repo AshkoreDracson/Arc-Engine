@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ArcEngine
 {
     public class GUISystem : BaseSystem
     {
-        private Queue<Action<GraphicContext>> CommandQueue { get; }
+        public delegate void GUICommand(GraphicContext gc);
+        private Queue<GUICommand> CommandQueue { get; }
 
         public GUISystem()
         {
-            CommandQueue = new Queue<Action<GraphicContext>>();
+            CommandQueue = new Queue<GUICommand>();
         }
 
-        internal void EnqueueCommand(Action<GraphicContext> command)
+        internal void EnqueueCommand(GUICommand command)
         {
             CommandQueue.Enqueue(command);
         }
@@ -21,7 +21,7 @@ namespace ArcEngine
         {
             while (CommandQueue.Count > 0)
             {
-                Action<GraphicContext> command = CommandQueue.Dequeue();
+                GUICommand command = CommandQueue.Dequeue();
                 command(gc);
             }
         }
