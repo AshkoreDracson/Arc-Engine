@@ -21,7 +21,7 @@ namespace ArcEngine
         private static RenderSystem RenderSystem { get; set; }
         private static BaseSystem[] Systems { get; set; }
 
-        private static GlobalScript[] GlobalScripts { get; set; }
+        internal static GlobalScript[] GlobalScripts { get; set; }
 
         public static void Run()
         {

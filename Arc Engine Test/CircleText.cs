@@ -1,8 +1,10 @@
 ﻿using ArcEngine;
+using System.Drawing;
+using Color = ArcEngine.Color;
 
 namespace ArcEngineTest
 {
-    public class TestScript : GlobalScript
+    public class CircleText : GlobalScript
     {
         private TextRenderer[] tr = new TextRenderer[125];
 
@@ -12,7 +14,8 @@ namespace ArcEngineTest
             {
                 GameObject go = new GameObject();
                 tr[i] = go.AddComponent<TextRenderer>();
-                tr[i].Text = "O";
+                tr[i].Font = new Font(FontFamily.GenericSansSerif, 10);
+                tr[i].Text = "*";
                 tr[i].Position = new Vector2(10 + i * 10, 10 + i * 10);
             }
         }

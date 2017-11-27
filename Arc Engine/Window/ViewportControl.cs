@@ -20,6 +20,10 @@ namespace ArcEngine
 
             GraphicContext gc = new GraphicContext(e.Graphics, Camera.instance);
 
+            foreach (GlobalScript script in Engine.GlobalScripts)
+            {
+                script.Draw(gc);
+            }
             foreach (GameObject go in GameObject.All)
             {
                 foreach (Component comp in go.GetComponentsEnumerable().Where(comp => comp is Renderer || comp is Script))

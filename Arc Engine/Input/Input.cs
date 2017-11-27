@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace ArcEngine
 {
@@ -7,6 +8,8 @@ namespace ArcEngine
         internal static InputSystem System { get; set; }
 
         private static Dictionary<string, Keys> keyMapping = new Dictionary<string, Keys>();
+
+        public static Vector2 MousePosition => RenderSystem.Window != null ? (Vector2)RenderSystem.Window.PointToClient(Cursor.Position) : default(Vector2);
 
         public static bool IsButtonDown(string name) => System.keyStates[(int)keyMapping[name]].HasFlag(KeyState.Pressed);
         public static bool IsButton(string name) => System.keyStates[(int)keyMapping[name]].HasFlag(KeyState.Held);
