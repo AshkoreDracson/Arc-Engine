@@ -4,7 +4,7 @@ namespace ArcEngine
 {
     public abstract class Script : Component
     {
-        public Transform transform => gameObject.transform;
+        public Transform transform => GameObject.Transform;
 
         public new virtual void Start() { }
         public new virtual void Update() { }

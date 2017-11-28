@@ -6,7 +6,7 @@ namespace ArcEngine
     public class GameObject
     {
         public static IEnumerable<GameObject> All => _gameObjects;
-        public static IEnumerable<GameObject> Root => _gameObjects.Where(go => go.transform.parent == null);
+        public static IEnumerable<GameObject> Root => _gameObjects.Where(go => go.Transform.Parent == null);
 
         private static readonly List<GameObject> _gameObjects = new List<GameObject>();
         private static ulong curID;
@@ -15,8 +15,9 @@ namespace ArcEngine
         public string Name { get; set; }
         public bool Enabled { get; set; } = true;
         public int Layer { get; set; } = ArcEngine.Layer.Get("Default");
+        public string Tag { get; set; }
 
-        public Transform transform { get; }
+        public Transform Transform { get; }
 
         private readonly List<Component> _components = new List<Component>();
 
@@ -25,8 +26,7 @@ namespace ArcEngine
         {
             ID = curID++;
             Name = name;
-
-            transform = AddComponent<Transform>();
+            Transform = AddComponent<Transform>();
 
             _gameObjects.Add(this);
         }
@@ -38,7 +38,7 @@ namespace ArcEngine
 
         public T AddComponent<T>() where T : Component, new()
         {
-            T comp = new T { gameObject = this };
+            T comp = new T { GameObject = this };
             _components.Add(comp);
             return comp;
         }
@@ -47,5 +47,9 @@ namespace ArcEngine
         public List<Component> GetComponents() => _components;
         public IEnumerable<Component> GetComponentsEnumerable() => _components;
         public void RemoveComponent<T>() where T : Component => _components.RemoveAll(comp => comp is T);
+
+        public static GameObject Find(string name) => _gameObjects.FirstOrDefault(go => go.Name == name);
+        public static GameObject FindByTag(string tag) => _gameObjects.FirstOrDefault(go => go.Tag == tag);
+        public static IEnumerable<GameObject> FindGameObjectsByTag(string tag) => _gameObjects.Where(go => go.Tag == tag);
     }
 }

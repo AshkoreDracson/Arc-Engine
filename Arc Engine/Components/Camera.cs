@@ -2,7 +2,7 @@
 {
     public class Camera : Component
     {
-        public static Camera instance { get; private set; }
+        public static Camera Instance { get; private set; }
 
         public Color ClearColor { get; set; } = Color.Black;
         public float FOV { get; set; } = 90f;
@@ -11,7 +11,7 @@
 
         public Camera()
         {
-            instance = this;
+            Instance = this;
         }
     }
 

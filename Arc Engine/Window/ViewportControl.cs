@@ -18,7 +18,7 @@ namespace ArcEngine
             g.Clear(System.Drawing.Color.Black);
             g.SmoothingMode = GraphicsSettings.AntiAliasing ? SmoothingMode.AntiAlias : SmoothingMode.None;
 
-            GraphicContext gc = new GraphicContext(e.Graphics, Camera.instance);
+            GraphicContext gc = new GraphicContext(e.Graphics, Camera.Instance);
 
             foreach (GameObject go in GameObject.All) // Renderers and Scripts
             {

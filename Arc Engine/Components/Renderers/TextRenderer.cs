@@ -27,7 +27,7 @@ namespace ArcEngine
 
         internal override void Draw(GraphicContext gc)
         {
-            gc.Graphics.DrawString(Text, Font, _brush, gameObject.transform.localPosition.x, gameObject.transform.localPosition.y);
+            gc.Graphics.DrawString(Text, Font, _brush, GameObject.Transform.LocalPosition.x, GameObject.Transform.LocalPosition.y);
         }
     }
 }

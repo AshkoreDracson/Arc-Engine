@@ -2,19 +2,19 @@
 {
     public class Transform : Component
     {
-        public Transform parent { get; set; }
+        public Transform Parent { get; set; }
 
-        public Vector3 position { get; set; }
-        public Vector3 eulerAngles { get; set; }
-        public Vector3 lossyScale { get; set; }
+        public Vector3 Position { get; set; }
+        public Vector3 EulerAngles { get; set; }
+        public Vector3 LossyScale { get; set; }
 
-        public Vector3 localPosition { get; set; }
-        public Vector3 localEulerAngles { get; set; }
-        public Vector3 localScale { get; set; }
+        public Vector3 LocalPosition { get; set; }
+        public Vector3 LocalEulerAngles { get; set; }
+        public Vector3 LocalScale { get; set; }
 
         public void SetParent(Transform t)
         {
-            parent = t;
+            Parent = t;
         }
     }
 }

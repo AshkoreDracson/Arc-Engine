@@ -3,7 +3,7 @@
     public abstract class Component
     {
         public bool Enabled { get; set; } = true;
-        public GameObject gameObject { get; internal set; }
+        public GameObject GameObject { get; internal set; }
 
         internal bool HasStarted { get; set; }
 

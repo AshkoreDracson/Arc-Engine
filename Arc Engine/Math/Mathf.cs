@@ -1868,7 +1868,7 @@ namespace ArcEngine
         /// <returns>A number to the nearest integral number</returns>
         public static float Round(this float value, MidpointRounding mode)
         {
-            return (float)Math.Round(value, (System.MidpointRounding)mode);
+            return (float)Math.Round(value, mode);
         }
         /// <summary>
         /// Rounds a number to a specified number of fractional digits. A parameter specifies how to round the value if it is midway between two other numbers
@@ -1879,7 +1879,7 @@ namespace ArcEngine
         /// <returns>A number to a specified number of fractional digits</returns>
         public static float Round(this float value, int digits, MidpointRounding mode)
         {
-            return (float)Math.Round(value, digits, (System.MidpointRounding)mode);
+            return (float)Math.Round(value, digits, mode);
         }
         /// <summary>
         /// Rounds a number to the nearest integral number
@@ -1908,7 +1908,7 @@ namespace ArcEngine
         /// <returns>A number to the nearest integral number</returns>
         public static double Round(this double value, MidpointRounding mode)
         {
-            return Math.Round(value, (System.MidpointRounding)mode);
+            return Math.Round(value, mode);
         }
         /// <summary>
         /// Rounds a number to a specified number of fractional digits. A parameter specifies how to round the value if it is midway between two other numbers
@@ -1919,7 +1919,7 @@ namespace ArcEngine
         /// <returns>A number to a specified number of fractional digits</returns>
         public static double Round(this double value, int digits, MidpointRounding mode)
         {
-            return Math.Round(value, digits, (System.MidpointRounding)mode);
+            return Math.Round(value, digits, mode);
         }
         /// <summary>
         /// Rounds a number to the nearest integral number
@@ -1948,7 +1948,7 @@ namespace ArcEngine
         /// <returns>A number to the nearest integral number</returns>
         public static decimal Round(this decimal value, MidpointRounding mode)
         {
-            return Math.Round(value, (System.MidpointRounding)mode);
+            return Math.Round(value, mode);
         }
         /// <summary>
         /// Rounds a number to a specified number of fractional digits. A parameter specifies how to round the value if it is midway between two other numbers
@@ -1959,7 +1959,7 @@ namespace ArcEngine
         /// <returns>A number to a specified number of fractional digits</returns>
         public static decimal Round(this decimal value, int digits, MidpointRounding mode)
         {
-            return Math.Round(value, digits, (System.MidpointRounding)mode);
+            return Math.Round(value, digits, mode);
         }
 
         /// <summary>
@@ -1980,7 +1980,7 @@ namespace ArcEngine
         /// <returns>A number rounded to the nearest integer</returns>
         public static int RoundToInt(this float value, MidpointRounding mode)
         {
-            return (int)Math.Round(value, (System.MidpointRounding)mode);
+            return (int)Math.Round(value, mode);
         }
         /// <summary>
         /// Rounds a number to the nearest integer
@@ -1999,7 +1999,7 @@ namespace ArcEngine
         /// <returns>A number rounded to the nearest integer</returns>
         public static int RoundToInt(this double value, MidpointRounding mode)
         {
-            return (int)Math.Round(value, (System.MidpointRounding)mode);
+            return (int)Math.Round(value, mode);
         }
         /// <summary>
         /// Rounds a number to the nearest integer
@@ -2018,7 +2018,7 @@ namespace ArcEngine
         /// <returns>A number rounded to the nearest integer</returns>
         public static int RoundToInt(this decimal value, MidpointRounding mode)
         {
-            return (int)Math.Round(value, (System.MidpointRounding)mode);
+            return (int)Math.Round(value, mode);
         }
 
         /// <summary>
