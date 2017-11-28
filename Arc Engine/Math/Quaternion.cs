@@ -6,7 +6,7 @@ namespace ArcEngine
     [StructLayout(LayoutKind.Sequential)]
     public struct Quaternion : IEquatable<Quaternion>
     {
-        public static Quaternion identity => new Quaternion(0, 0, 0, 0);
+        public static Quaternion Identity => new Quaternion(0, 0, 0, 0);
 
         public float x { get; set; }
         public float y { get; set; }
