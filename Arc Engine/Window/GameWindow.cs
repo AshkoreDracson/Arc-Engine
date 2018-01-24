@@ -1,24 +1,26 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using OpenTK;
+using OpenTK.Graphics.OpenGL;
 
 namespace ArcEngine
 {
-    public class GameWindow : Form
+    public class GameWindow : OpenTK.GameWindow
     {
-        public ViewportControl Viewport { get; }
-
+        public GameWindow() : this("Arc Engine") { }
         public GameWindow(string title)
         {
-            Width = 1280;
-            Height = 720;
-            Text = title;
+            Title = title;
+        }
 
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MinimizeBox = false;
-            MaximizeBox = false;
-            StartPosition = FormStartPosition.CenterScreen;
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
 
-            Viewport = new ViewportControl { Dock = DockStyle.Fill };
-            Controls.Add(Viewport);
+            GL.Viewport(ClientRectangle.X, ClientRectangle.Y, ClientRectangle.Width, ClientRectangle.Height);
+
+            Matrix4 projection = Matrix4.CreatePerspectiveFieldOfView((float)Math.PI / 4, Width / (float)Height, 1.0f, 64.0f);
+            GL.MatrixMode(MatrixMode.Projection);
+            GL.LoadMatrix(ref projection);
         }
     }
 }

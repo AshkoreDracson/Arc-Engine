@@ -23,8 +23,6 @@ namespace ArcEngine
             {
                 switch (GetAsyncKeyState(i))
                 {
-                    case 0:
-                        goto default;
                     case -32767:
                         keyStates[i] = KeyState.Pressed | KeyState.Held;
                         break;

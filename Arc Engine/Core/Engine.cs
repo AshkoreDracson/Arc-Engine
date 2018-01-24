@@ -1,26 +1,12 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
-using System.Threading;
-using System.Windows.Forms;
+using OpenTK;
 
 namespace ArcEngine
 {
     public static class Engine
     {
-        public static string Title
-        {
-            get => RenderSystem.Window?.Text ?? "???";
-            set => RenderSystem.Window.Text = value;
-        }
-        public static int TargetFramerate { get; set; } = 60;
-
-        public static Vector2 Size
-        {
-            get => (Vector2)RenderSystem.Window.Size;
-            set => RenderSystem.Window.Size = (Size)value;
-        }
-
         private static bool RequestQuit { get; set; }
         private static bool Running => !RequestQuit && (RenderSystem.Window?.Visible ?? false);
 
@@ -38,10 +24,15 @@ namespace ArcEngine
 
             InputSystem = new InputSystem();
             GUISystem = new GUISystem();
-            RenderSystem = new RenderSystem();
+            RenderSystem = new RenderSystem { VSync = VSyncMode.Adaptive };
             Systems = new BaseSystem[] { InputSystem, GUISystem, RenderSystem };
 
+            RenderSystem.TargetFramerate = 60;
+
             GlobalScripts = GlobalScript.GetEnumerableOfType<GlobalScript>().OrderBy(script => script.Order).ToArray();
+
+            RenderSystem.Window.UpdateFrame += Update;
+            RenderSystem.Window.RenderFrame += Draw;
 
             Work();
         }
@@ -54,27 +45,6 @@ namespace ArcEngine
         private static void Work()
         {
             Start();
-
-            while (Running)
-            {
-                DateTime start = DateTime.Now;
-
-                Update();
-                Draw();
-
-                if (TargetFramerate > 0)
-                {
-                    DateTime endWork = DateTime.Now;
-                    TimeSpan elapsedTime = endWork - start;
-                    int waitTime = (1000 / TargetFramerate - (int)elapsedTime.TotalMilliseconds).ClampMin(0);
-
-                    if (waitTime > 0)
-                        Thread.Sleep(waitTime);
-                }
-
-                DateTime end = DateTime.Now;
-                Time.SetDeltaTime((float)(end - start).TotalSeconds);
-            }
         }
 
         private static void Start()
@@ -89,13 +59,14 @@ namespace ArcEngine
             }
         }
 
-        private static void Update()
+        private static void Update(object sender, FrameEventArgs e)
         {
+            Time.SetDeltaTime((float)e.Time);
             InputSystem.Update();
 
-            foreach (GameObject go in GameObject.All)
+            foreach (GameObject go in GameObject.All.Where(g => g.Enabled))
             {
-                foreach (Component comp in go.GetComponentsEnumerable())
+                foreach (Component comp in go.GetComponentsEnumerable().Where(c => c.Enabled))
                 {
                     if (!comp.HasStarted) comp.Start();
                     comp.Update();
@@ -105,11 +76,9 @@ namespace ArcEngine
             {
                 script.Update();
             }
-
-            Application.DoEvents();
         }
 
-        private static void Draw()
+        private static void Draw(object sender, FrameEventArgs e)
         {
             RenderSystem.Update();
         }

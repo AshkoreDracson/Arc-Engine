@@ -26,6 +26,7 @@ namespace ArcEngine
         }
         public static void Text(string text, Vector2 position, Brush brush)
         {
+
             Engine.GUISystem.EnqueueCommand(gc =>
             {
                 gc.Graphics.DrawString(text, DefaultFont, brush, (PointF)position);

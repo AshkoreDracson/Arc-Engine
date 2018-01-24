@@ -7,6 +7,7 @@ namespace ArcEngine
         public Camera Camera { get; }
         public Graphics Graphics { get; }
 
+
         public GraphicContext(Graphics g, Camera c)
         {
             Camera = c;

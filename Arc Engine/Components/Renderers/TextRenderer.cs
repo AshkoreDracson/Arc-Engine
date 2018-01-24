@@ -18,6 +18,8 @@ namespace ArcEngine
         public Font Font { get; set; } = new Font(FontFamily.GenericMonospace, 9f);
         public string Text { get; set; }
 
+
+
         private SolidBrush _brush;
 
         public TextRenderer()
