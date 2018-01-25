@@ -72,7 +72,7 @@ namespace ArcEngine
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        protected virtual void Dispose(bool disposing)
+        protected void Dispose(bool disposing)
         {
             if (disposing)
             {

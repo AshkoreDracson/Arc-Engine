@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using OpenTK.Graphics;
 
 namespace ArcEngine
 {
@@ -138,6 +139,9 @@ namespace ArcEngine
 
         public static implicit operator Color32(Color c) => new Color32((byte)(c.r * 255).ClampMax(255), (byte)(c.g * 255).ClampMax(255), (byte)(c.b * 255).ClampMax(255), (byte)(c.a * 255).ClampMax(255));
         public static implicit operator System.Drawing.Color(Color c) => System.Drawing.Color.FromArgb((byte)(c.a * 255).ClampMax(255), (byte)(c.r * 255).ClampMax(255), (byte)(c.g * 255).ClampMax(255), (byte)(c.b * 255).ClampMax(255));
+
+        public static implicit operator Color4(Color c) => new Color4(c.r, c.g, c.b, c.a);
+        public static implicit operator Color(Color4 c) => new Color(c.R, c.G, c.B, c.A);
 
         public override string ToString() => $"R:{r}, G:{g}, B:{b}, A:{a}";
         public bool Equals(Color other) => r == other.r && g == other.g && b == other.b && a == other.a;

@@ -1,6 +1,4 @@
-﻿using OpenTK.Graphics.OpenGL4;
-
-namespace ArcEngine
+﻿namespace ArcEngine
 {
     public class MeshRenderer : Renderer
     {
