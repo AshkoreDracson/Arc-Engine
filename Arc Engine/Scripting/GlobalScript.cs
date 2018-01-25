@@ -11,7 +11,7 @@ namespace ArcEngine
 
         public virtual void Start() { }
         public virtual void Update() { }
-        public virtual void Draw(GraphicContext gc) { }
+        public virtual void Draw() { }
 
         internal static IEnumerable<T> GetEnumerableOfType<T>(params object[] constructorArgs) where T : class
         {

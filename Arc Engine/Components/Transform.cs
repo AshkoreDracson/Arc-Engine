@@ -1,4 +1,6 @@
-﻿namespace ArcEngine
+﻿using OpenTK;
+
+namespace ArcEngine
 {
     public class Transform : Component
     {
@@ -11,6 +13,11 @@
         public Vector3 LocalPosition { get; set; }
         public Vector3 LocalEulerAngles { get; set; }
         public Vector3 LocalScale { get; set; }
+
+        public Quaternion Rotation => new OpenTK.Quaternion(EulerAngles);
+
+        public Matrix4 LocalToWorldMatrix => Matrix4.CreateTranslation(Position) *
+                                             Matrix4.CreateFromQuaternion(Rotation) * Matrix4.CreateScale(LossyScale);
 
         public void SetParent(Transform t)
         {

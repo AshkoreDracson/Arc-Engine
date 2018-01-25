@@ -8,7 +8,7 @@ namespace ArcEngine
 
         public new virtual void Start() { }
         public new virtual void Update() { }
-        public new virtual void Draw(GraphicContext gc) { }
+        public new virtual void Draw() { }
 
         public void print(object o)
         {

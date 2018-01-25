@@ -7,7 +7,7 @@ namespace ArcEngineTest
     {
         public override void Update()
         {
-            Console.WriteLine(Time.time);
+            
         }
     }
 }

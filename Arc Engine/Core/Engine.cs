@@ -7,12 +7,17 @@ namespace ArcEngine
 {
     public static class Engine
     {
+        public static string Title
+        {
+            get => RenderSystem?.Title;
+            set => RenderSystem.Title = value;
+        }
+
         private static bool RequestQuit { get; set; }
         private static bool Running => !RequestQuit && (RenderSystem.Window?.Visible ?? false);
 
         internal static InputSystem InputSystem { get; set; }
         internal static RenderSystem RenderSystem { get; set; }
-        internal static GUISystem GUISystem { get; set; }
         internal static BaseSystem[] Systems { get; set; }
 
         internal static GlobalScript[] GlobalScripts { get; set; }
@@ -23,9 +28,8 @@ namespace ArcEngine
                 return;
 
             InputSystem = new InputSystem();
-            GUISystem = new GUISystem();
-            RenderSystem = new RenderSystem { VSync = VSyncMode.Adaptive };
-            Systems = new BaseSystem[] { InputSystem, GUISystem, RenderSystem };
+            RenderSystem = new RenderSystem();
+            Systems = new BaseSystem[] { InputSystem, RenderSystem };
 
             RenderSystem.TargetFramerate = 60;
 
@@ -49,19 +53,18 @@ namespace ArcEngine
 
         private static void Start()
         {
-            foreach (BaseSystem system in Systems)
-            {
-                system.Start();
-            }
+            InputSystem.Start();
+
             foreach (GlobalScript script in GlobalScripts)
             {
                 script.Start();
             }
+
+            RenderSystem.Start();
         }
 
         private static void Update(object sender, FrameEventArgs e)
         {
-            Time.SetDeltaTime((float)e.Time);
             InputSystem.Update();
 
             foreach (GameObject go in GameObject.All.Where(g => g.Enabled))
@@ -81,6 +84,7 @@ namespace ArcEngine
         private static void Draw(object sender, FrameEventArgs e)
         {
             RenderSystem.Update();
+            Time.SetDeltaTime((float)e.Time);
         }
     }
 }

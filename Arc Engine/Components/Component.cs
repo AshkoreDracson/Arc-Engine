@@ -9,6 +9,6 @@
 
         internal virtual void Start() { }
         internal virtual void Update() { }
-        internal virtual void Draw(GraphicContext gc) { }
+        internal virtual void Draw() { }
     }
 }

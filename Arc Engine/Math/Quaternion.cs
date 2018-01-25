@@ -62,6 +62,9 @@ namespace ArcEngine
         public static bool operator ==(Quaternion a, Quaternion b) => a.x == b.x && a.y == b.y && a.z == b.z && a.w == b.w;
         public static bool operator !=(Quaternion a, Quaternion b) => a.x != b.x || a.y != b.y || a.z != b.z || a.w != b.w;
 
+        public static implicit operator OpenTK.Quaternion(Quaternion a) => new OpenTK.Quaternion(a.x, a.y, a.z, a.w);
+        public static implicit operator Quaternion(OpenTK.Quaternion a) => new Quaternion(a.X, a.Y, a.Z, a.W);
+
         public bool Equals(Quaternion other) => x.Equals(other.x) && y.Equals(other.y) && z.Equals(other.z) && w.Equals(other.w);
         public override bool Equals(object obj)
         {
