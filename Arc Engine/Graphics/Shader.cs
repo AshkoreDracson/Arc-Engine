@@ -10,8 +10,10 @@ namespace ArcEngine
         {
             var shader = GL.CreateShader(type);
             var src = File.ReadAllText(path);
+
             GL.ShaderSource(shader, src);
             GL.CompileShader(shader);
+
             return shader;
         }
         public static int CreateProgram()
@@ -27,11 +29,12 @@ namespace ArcEngine
                 GL.AttachShader(program, shader);
 
             GL.LinkProgram(program);
-            foreach (var shader in shaders)
-            {
-                GL.DetachShader(program, shader);
-                GL.DeleteShader(shader);
-            }
+
+            //foreach (var shader in shaders)
+            //{
+            //    GL.DetachShader(program, shader);
+            //    GL.DeleteShader(shader);
+            //}
             return program;
         }
     }

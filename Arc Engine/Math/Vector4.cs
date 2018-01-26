@@ -129,6 +129,9 @@ namespace ArcEngine
         public static explicit operator Vector4(Vector2 a) => new Vector4(a.x, a.y);
         public static explicit operator Vector4(Vector3 a) => new Vector4(a.x, a.y, a.z);
 
+        public static implicit operator OpenTK.Vector4(Vector4 a) => new OpenTK.Vector4(a.x, a.y, a.z, a.w);
+        public static implicit operator Vector4(OpenTK.Vector4 a) => new Vector4(a.X, a.Y, a.Z, a.W);
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;

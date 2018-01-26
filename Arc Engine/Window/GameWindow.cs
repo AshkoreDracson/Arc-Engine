@@ -12,12 +12,16 @@ namespace ArcEngine
         public GameWindow(RenderSystem rs, string title)
         {
             LinkedRenderSystem = rs;
+            Title = title;
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
             LinkedRenderSystem.ShaderProgram = Shader.CreateProgram();
 
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
             GL.PatchParameter(PatchParameterInt.PatchVertices, 3);
-
-            Title = title;
         }
 
         protected override void OnResize(EventArgs e)

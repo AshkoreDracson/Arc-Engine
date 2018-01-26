@@ -75,7 +75,7 @@ namespace ArcEngine
 
                 GL.ClearColor(camera.ClearColor);
                 GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-                //GL.Enable(EnableCap.DepthTest);
+                GL.Enable(EnableCap.DepthTest);
 
                 GL.UseProgram(ShaderProgram);
 
@@ -87,7 +87,8 @@ namespace ArcEngine
                 //GL.DrawArrays(PrimitiveType.Points, 0, 1);
                 //GL.PointSize(10);
 
-                //Matrix4 modelview = camera.GameObject.Transform.LocalToWorldMatrix;
+                Matrix4 modelview = camera.GameObject.Transform.LocalToWorldMatrix;
+                //modelview = Matrix4.LookAt(Vector3.zero, Vector3.forward, Vector3.up);
                 //GL.MatrixMode(MatrixMode.Modelview);
                 //GL.LoadMatrix(ref modelview);
 

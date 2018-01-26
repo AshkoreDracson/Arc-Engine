@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using OpenTK;
+using OpenTK.Graphics.OpenGL;
 
 namespace ArcEngine
 {
@@ -37,6 +38,8 @@ namespace ArcEngine
 
             RenderSystem.Window.UpdateFrame += Update;
             RenderSystem.Window.RenderFrame += Draw;
+
+            Title = $"OpenGL version: {GL.GetString(StringName.Version)}";
 
             Work();
         }
