@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using OpenTK;
 
 namespace ArcEngine
 {
@@ -15,7 +16,7 @@ namespace ArcEngine
         public float NearClipPlane { get; set; } = 0.3f;
         public float FarClipPlane { get; set; } = 1000f;
 
-        public float FOVRadians => FOV.Remap(0f, 180f, 0f, (float)Mathf.Pi).ClampMax(179.99f);
+        public float FOVRadians => FOV * ((float)Mathf.Pi / 180f);
 
         public Camera()
         {

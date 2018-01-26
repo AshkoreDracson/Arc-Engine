@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using OpenTK.Graphics.OpenGL;
 
@@ -13,6 +14,10 @@ namespace ArcEngine
 
             GL.ShaderSource(shader, src);
             GL.CompileShader(shader);
+
+            var info = GL.GetShaderInfoLog(shader);
+            if (!string.IsNullOrWhiteSpace(info))
+                throw new Exception($"CompileShader {type} had errors: {info}");
 
             return shader;
         }
@@ -29,6 +34,10 @@ namespace ArcEngine
                 GL.AttachShader(program, shader);
 
             GL.LinkProgram(program);
+
+            var info = GL.GetProgramInfoLog(program);
+            if (!string.IsNullOrWhiteSpace(info))
+                throw new Exception($"CompileShaders ProgramLinking had errors: {info}");
 
             foreach (var shader in shaders)
             {

@@ -3,6 +3,7 @@
     public abstract class Component
     {
         public bool Enabled { get; set; } = true;
+        public Transform Transform => GameObject?.Transform;
         public GameObject GameObject { get; internal set; }
 
         internal bool HasStarted { get; set; }

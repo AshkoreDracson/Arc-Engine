@@ -45,6 +45,7 @@ namespace ArcEngine
         public RenderSystem()
         {
             Window = new GameWindow(this, Title);
+            Window.MouseMove += Input.OnMouseMove;
         }
 
         internal override void Start()
@@ -56,22 +57,19 @@ namespace ArcEngine
         {
             foreach (Camera camera in Camera.Cameras.OrderBy(c => c.Depth))
             {
-                Matrix4 projection;
+                Matrix4 projection = camera.Transform.LookAtMatrix;
 
                 switch (camera.PerspectiveMode)
                 {
                     case PerspectiveMode.Perspective:
-                        projection = Matrix4.CreatePerspectiveFieldOfView(camera.FOVRadians, Window.Width / (float)Window.Height, camera.NearClipPlane, camera.FarClipPlane);
+                        projection *= Matrix4.CreatePerspectiveFieldOfView(camera.FOVRadians, Window.Width / (float)Window.Height, camera.NearClipPlane, camera.FarClipPlane);
                         break;
                     case PerspectiveMode.Orthographic:
-                        projection = Matrix4.CreateOrthographic(camera.OrthographicSize * (Window.Width / (float)Window.Height), camera.OrthographicSize, camera.NearClipPlane, camera.FarClipPlane);
+                        projection *= Matrix4.CreateOrthographic(camera.OrthographicSize * (Window.Width / (float)Window.Height), camera.OrthographicSize, camera.NearClipPlane, camera.FarClipPlane);
                         break;
                     default:
                         goto case PerspectiveMode.Perspective;
                 }
-                
-                //GL.MatrixMode(MatrixMode.Projection);
-                //GL.LoadMatrix(ref projection);
 
                 GL.ClearColor(camera.ClearColor);
                 GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
@@ -81,24 +79,10 @@ namespace ArcEngine
 
                 foreach (MeshRenderer renderer in GameObject.All.Select(go => go.GetComponent<MeshRenderer>()).Where(mr => mr != null))
                 {
+                    Matrix4 rendererMatrix = renderer.Transform.LookAtMatrix * projection;
+                    GL.UniformMatrix4(20, false, ref rendererMatrix);
                     renderer.Draw();
                 }
-
-                //GL.DrawArrays(PrimitiveType.Points, 0, 1);
-                //GL.PointSize(10);
-
-                Matrix4 modelview = camera.GameObject.Transform.LocalToWorldMatrix;
-                //modelview = Matrix4.LookAt(Vector3.zero, Vector3.forward, Vector3.up);
-                //GL.MatrixMode(MatrixMode.Modelview);
-                //GL.LoadMatrix(ref modelview);
-
-                //GL.Begin(PrimitiveType.Triangles);
-
-                //GL.Color3(1.0f, 1.0f, 0.0f); GL.Vertex3(-1.0f, -1.0f, 4.0f);
-                //GL.Color3(1.0f, 0.0f, 0.0f); GL.Vertex3(1.0f, -1.0f, 4.0f);
-                //GL.Color3(0.2f, 0.9f, 1.0f); GL.Vertex3(0.0f, 1.0f, 4.0f);
-
-                //GL.End();
             }
 
             Window.SwapBuffers();

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
+using OpenTK.Input;
 
 namespace ArcEngine
 {
@@ -10,6 +11,7 @@ namespace ArcEngine
         private static Dictionary<string, Keys> keyMapping = new Dictionary<string, Keys>();
 
         public static Vector2 MousePosition => RenderSystem.Window != null ? (Vector2)RenderSystem.Window.PointToClient(Cursor.Position) : default(Vector2);
+        public static Vector2 MouseDelta { get; private set; }
 
         public static bool IsButtonDown(string name) => System.keyStates[(int)keyMapping[name]].HasFlag(KeyState.Pressed);
         public static bool IsButton(string name) => System.keyStates[(int)keyMapping[name]].HasFlag(KeyState.Held);
@@ -34,6 +36,11 @@ namespace ArcEngine
         {
             if (keyMapping.ContainsKey(name))
                 keyMapping.Remove(name);
+        }
+
+        internal static void OnMouseMove(object sender, MouseMoveEventArgs e)
+        {
+            MouseDelta = new Vector2(e.XDelta, e.YDelta);
         }
     }
 }

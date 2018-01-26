@@ -58,6 +58,7 @@
     <Compile Include="Core\Layer.cs" />
     <Compile Include="Core\Time.cs" />
     <Compile Include="Graphics\Mesh.cs" />
+    <Compile Include="Graphics\PrimitiveMeshes.cs" />
     <Compile Include="Graphics\Shader.cs" />
     <Compile Include="Graphics\Vertex.cs" />
     <Compile Include="Math\Color32.cs" />

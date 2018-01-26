@@ -14,20 +14,21 @@ namespace ArcEngine
         private readonly int _buffer;
         private readonly int _verticeCount;
 
-        public Mesh(IEnumerable<Vertex> vertices)
+        public Mesh(Vertex[] vertices)
         {
-            Vertex[] arr = vertices.ToArray();
-
-            _verticeCount = arr.Length;
-            Vertices = arr;
+            _verticeCount = vertices.Length;
+            Vertices = vertices;
 
             _vertexArray = GL.GenVertexArray();
             _buffer = GL.GenBuffer();
 
+            GL.BindVertexArray(_vertexArray);
+            GL.BindBuffer(BufferTarget.ArrayBuffer, _buffer);
+
             GL.NamedBufferStorage(
                 _buffer,
-                Vertex.Size * arr.Length,        // the size needed by this buffer
-                arr,                           // data to initialize with
+                Vertex.Size * vertices.Length,        // the size needed by this buffer
+                vertices,                           // data to initialize with
                 BufferStorageFlags.MapWriteBit);    // at this point we will only write to the buffer
 
             GL.VertexArrayAttribBinding(_vertexArray, 0, 0);
@@ -51,15 +52,6 @@ namespace ArcEngine
                 16);                     // relative offset after a vec4
 
             GL.VertexArrayVertexBuffer(_vertexArray, 0, _buffer, IntPtr.Zero, Vertex.Size);
-
-            GL.BindVertexArray(_vertexArray);
-            GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
-
-            GL.BindVertexArray(_vertexArray);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, _buffer);
-
-            //Vertex[] newArr = new Vertex[arr.Length]; // todo: TO REMOVE LATER
-            //GL.NamedBufferStorage(_buffer, Vertex.Size * arr.Length, newArr, BufferStorageFlags.MapReadBit); // todo: THIS TOO
 
             _initialized = true;
         }

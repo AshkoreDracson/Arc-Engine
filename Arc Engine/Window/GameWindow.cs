@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenTK;
+using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 
 namespace ArcEngine
@@ -9,10 +10,9 @@ namespace ArcEngine
         public RenderSystem LinkedRenderSystem { get; }
 
         public GameWindow(RenderSystem rs) : this(rs, "Arc Engine") { }
-        public GameWindow(RenderSystem rs, string title)
+        public GameWindow(RenderSystem rs, string title) : base(640, 480, GraphicsMode.Default, title)
         {
             LinkedRenderSystem = rs;
-            Title = title;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -20,7 +20,9 @@ namespace ArcEngine
             base.OnLoad(e);
             LinkedRenderSystem.ShaderProgram = Shader.CreateProgram();
 
-            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Fill);
+            CursorVisible = true;
+
+            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
             GL.PatchParameter(PatchParameterInt.PatchVertices, 3);
         }
 
