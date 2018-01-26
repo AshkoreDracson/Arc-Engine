@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using OpenTK.Graphics;
 
 namespace ArcEngine
 {
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct Vertex
     {
         private readonly OpenTK.Vector4 _position;

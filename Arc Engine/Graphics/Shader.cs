@@ -30,11 +30,11 @@ namespace ArcEngine
 
             GL.LinkProgram(program);
 
-            //foreach (var shader in shaders)
-            //{
-            //    GL.DetachShader(program, shader);
-            //    GL.DeleteShader(shader);
-            //}
+            foreach (var shader in shaders)
+            {
+                GL.DetachShader(program, shader);
+                GL.DeleteShader(shader);
+            }
             return program;
         }
     }

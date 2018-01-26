@@ -52,14 +52,14 @@ namespace ArcEngine
 
             GL.VertexArrayVertexBuffer(_vertexArray, 0, _buffer, IntPtr.Zero, Vertex.Size);
 
-            //GL.BindVertexArray(_vertexArray);
-            //GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
+            GL.BindVertexArray(_vertexArray);
+            GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
 
             GL.BindVertexArray(_vertexArray);
             GL.BindBuffer(BufferTarget.ArrayBuffer, _buffer);
 
-            Vertex[] newArr = new Vertex[arr.Length]; // todo: TO REMOVE LATER
-            GL.NamedBufferStorage(_buffer, Vertex.Size * arr.Length, newArr, BufferStorageFlags.MapReadBit); // todo: THIS TOO
+            //Vertex[] newArr = new Vertex[arr.Length]; // todo: TO REMOVE LATER
+            //GL.NamedBufferStorage(_buffer, Vertex.Size * arr.Length, newArr, BufferStorageFlags.MapReadBit); // todo: THIS TOO
 
             _initialized = true;
         }
